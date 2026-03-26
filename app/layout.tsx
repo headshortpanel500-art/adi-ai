@@ -14,6 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="color-scheme" content="dark" />
+      </head>
       <body>
         {/* পুরো অ্যাপকে সেশন দিয়ে র‍্যাপ করে দাও */}
         <SessionWrapper>
