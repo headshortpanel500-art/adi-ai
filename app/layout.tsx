@@ -3,7 +3,7 @@ import "./globals.css";
 import SessionWrapper from "@/components/SessionWrapper"; // ইমপোর্ট করো
 
 export const metadata: Metadata = {
-  title: "Adiat's AI Friend",
+  title: "Adiat AI",
   description: "Created by Adiat Sarker",
 };
 
