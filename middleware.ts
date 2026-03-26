@@ -1,6 +1,11 @@
-export { default } from "next-auth/middleware";
+import { withAuth } from "next-auth/middleware";
 
-export const config = { 
-  // শুধু হোম পেজ বা চ্যাট পেজকে প্রোটেক্ট করবে
-  matcher: ["/"] 
+export default withAuth({
+  pages: {
+    signIn: "/login", // login page (optional)
+  },
+});
+
+export const config = {
+  matcher: ["/"],
 };
