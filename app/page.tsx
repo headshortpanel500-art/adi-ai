@@ -161,6 +161,8 @@ export default function BlueChatApp() {
             {language || 'code'}
           </span>
           <button 
+            onClick={onCopy} 
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-200"
           >
             {isCopied ? <Check size={14} className="text-green-400" /> : <Copy size={14} />}
             <span className="text-xs">{isCopied ? 'Copied!' : 'Copy'}</span>
@@ -313,14 +315,11 @@ export default function BlueChatApp() {
         {/* Mobile Header */}
         <div className="md:hidden flex items-center justify-between p-4 bg-gradient-to-r from-slate-900/90 to-purple-900/90 backdrop-blur-lg border-b border-white/10">
           <button 
-            onClick={() => setSidebarOpen(true)} 
-            className="menu-button p-2 rounded-xl hover:bg-white/10 transition-all"
           >
             <Menu className="w-6 h-6 text-white" />
           </button>
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
             </div>
             <h1 className="text-lg font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Adi AI
