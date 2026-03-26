@@ -538,13 +538,30 @@ export default function BlueChatApp() {
         </div>
       </main>
 
-      <style jsx>{`
+<style jsx>{`
   :root {
-    color-scheme: dark;
+    color-scheme: dark !important;
   }
 
-  html, body {
-    background-color: #020617;
+  html {
+    color-scheme: dark !important;
+    background: #020617 !important;
+  }
+
+  body {
+    background: #020617 !important;
+  }
+
+  /* Force all elements to stay dark */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (prefers-color-scheme: light) {
+    html, body {
+      background: #020617 !important;
+      color: white !important;
+    }
   }
 
   @keyframes fade-in {
