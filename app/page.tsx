@@ -350,7 +350,7 @@ export default function BlueChatApp() {
             <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center space-y-4">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 animate-pulse"></div>
-                <div className="relative text-7xl animate-float">🤖💙✨</div>
+                <div className="relative text-7xl animate-float">🤖💙</div>
               </div>
               <div className="space-y-2">
                 <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
