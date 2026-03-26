@@ -170,7 +170,7 @@ export default function BlueChatApp() {
       {/* Mobile Overlay */}
       {sidebarOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-20 md:hidden" 
+          className="fixed inset-0 bg-black/60 z-20 md:hidden" 
           onClick={() => setSidebarOpen(false)} 
         />
       )}
@@ -281,7 +281,7 @@ export default function BlueChatApp() {
           </button>
         </div>
 
-        {/* Messages Container - Fixed for mobile */}
+        {/* Messages Container */}
         <div 
           ref={scrollRef}
           className="flex-1 overflow-y-auto p-3 space-y-3"
@@ -380,7 +380,7 @@ export default function BlueChatApp() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input Area - Fixed at bottom */}
+        {/* Input Area */}
         <div className="p-3 bg-gray-900 border-t border-gray-800">
           <div className="flex gap-2 items-end">
             <textarea
