@@ -185,7 +185,7 @@ export default function BlueChatApp() {
   };
 
   return (
-    <div className="h-screen flex flex-col md:flex-row bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 overflow-hidden">
+    <div className="h-screen flex flex-col md:flex-row bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
       
       {/* Mobile Overlay */}
       {sidebarOpen && (
@@ -336,7 +336,7 @@ export default function BlueChatApp() {
           </button>
         </div>
 
-        {/* Messages Container - Added bg-gray-900 to fix white background issue */}
+        {/* Messages Container */}
         <div 
           ref={scrollRef}
           className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 custom-scrollbar bg-gray-900"
