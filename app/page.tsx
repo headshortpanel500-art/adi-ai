@@ -228,7 +228,7 @@ export default function BlueChatApp() {
               onClick={startNewChat} 
               className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500/20 to-purple-500/20 hover:from-cyan-500/30 hover:to-purple-500/30 border border-cyan-500/30 transition-all duration-300"
             >
-              <span className="text-sm font-medium text-cyan-400">✨ New Chat</span>
+              <span className="text-sm font-medium text-cyan-400">New Chat</span>
             </button>
           </div>
         </div>
