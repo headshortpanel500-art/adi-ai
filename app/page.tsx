@@ -311,7 +311,7 @@ export default function BlueChatApp() {
       </aside>
 
       {/* Main Chat Area */}
-      <main className="flex-1 flex flex-col h-full overflow-hidden w-full">
+      <main className="flex-1 flex flex-col h-full overflow-hidden w-full min-w-0">
         {/* Mobile Header */}
         <div className="md:hidden flex items-center justify-between p-4 bg-gradient-to-r from-slate-900/90 to-purple-900/90 backdrop-blur-lg border-b border-white/10">
           <button 
@@ -385,7 +385,7 @@ export default function BlueChatApp() {
             </div>
           ) : (
             /* Chat Messages with Delete Button */
-            <div className="w-full space-y-4">
+            <div className="w-full max-w-full overflow-x-hidden">
               {chatLog.map((chat, idx) => (
                 <div 
                   key={idx} 
@@ -397,7 +397,7 @@ export default function BlueChatApp() {
                   <div className="flex justify-end w-full">
                     <div className="relative max-w-[85%] md:max-w-[70%]">
                       <div className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-2xl rounded-tr-none px-5 py-3 shadow-xl">
-                        <p className="text-base leading-relaxed break-words whitespace-pre-wrap">{chat.p}</p>
+                        <p className="text-base leading-relaxed break-words whitespace-pre-wrap overflow-wrap-anywhere">{chat.p}</p>
                       </div>
                       <button 
                         onClick={() => deleteMessage(idx)}
@@ -423,7 +423,7 @@ export default function BlueChatApp() {
                             AI ADIAT
                           </span>
                         </div>
-                        <div className="prose prose-invert max-w-none break-words">
+                        <div className="prose prose-invert max-w-none break-words overflow-wrap-anywhere">
                           <ReactMarkdown
                             components={{
                               code({ node, inline, className, children, ...props }: any) {
@@ -499,7 +499,7 @@ export default function BlueChatApp() {
 
         {/* Input Area */}
         <div className="p-4 md:p-6 bg-gradient-to-t from-slate-900 to-transparent border-t border-white/10 w-full">
-          <div className="max-w-4xl mx-auto w-full">
+          <div className="max-w-4xl mx-auto w-full px-2 md:px-0">
             <div className="relative flex items-end gap-3 bg-gradient-to-r from-gray-800/40 to-purple-900/40 rounded-2xl border border-purple-500/30 focus-within:border-cyan-500/50 focus-within:ring-2 focus-within:ring-cyan-500/50 transition-all duration-300">
               <textarea
                 ref={inputRef}
@@ -614,6 +614,9 @@ export default function BlueChatApp() {
         .break-words {
           word-break: break-word;
           overflow-wrap: break-word;
+        }
+        .overflow-wrap-anywhere {
+          overflow-wrap: anywhere;
         }
         .prose {
           max-width: 100%;
