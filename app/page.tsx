@@ -311,15 +311,18 @@ export default function BlueChatApp() {
       </aside>
 
       {/* Main Chat Area */}
-      <main className="flex-1 flex flex-col h-full overflow-hidden w-full">
+      <main className="flex-1 flex flex-col h-full overflow-hidden">
         {/* Mobile Header */}
         <div className="md:hidden flex items-center justify-between p-4 bg-gradient-to-r from-slate-900/90 to-purple-900/90 backdrop-blur-lg border-b border-white/10">
           <button 
+            onClick={() => setSidebarOpen(true)} 
+            className="menu-button p-2 rounded-xl hover:bg-white/10 transition-all"
           >
             <Menu className="w-6 h-6 text-white" />
           </button>
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-white" />
             </div>
             <h1 className="text-lg font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               Adi AI
@@ -336,7 +339,7 @@ export default function BlueChatApp() {
         {/* Messages Container */}
         <div 
           ref={scrollRef}
-          className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 custom-scrollbar w-full"
+          className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 custom-scrollbar"
           style={{ 
             height: '100%',
             minHeight: 0,
@@ -344,7 +347,7 @@ export default function BlueChatApp() {
           }}
         >
           {chatLog.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center space-y-4 px-4">
+            <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center space-y-4">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 animate-pulse"></div>
                 <div className="relative text-7xl animate-float">🤖💙</div>
@@ -382,96 +385,92 @@ export default function BlueChatApp() {
             </div>
           ) : (
             /* Chat Messages with Delete Button */
-            <div className="w-full space-y-4">
-              {chatLog.map((chat, idx) => (
-                <div 
-                  key={idx} 
-                  className="flex flex-col gap-3 animate-fade-in w-full"
-                  onMouseEnter={() => setHoveredMessage(idx)}
-                  onMouseLeave={() => setHoveredMessage(null)}
-                >
-                  {/* User Message */}
-                  <div className="flex justify-end w-full">
-                    <div className="relative max-w-[85%] md:max-w-[70%]">
-                      <div className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-2xl rounded-tr-none px-5 py-3 shadow-xl">
-                        <p className="text-base leading-relaxed break-words whitespace-pre-wrap">{chat.p}</p>
-                      </div>
-                      <button 
-                        onClick={() => deleteMessage(idx)}
-                        className={`absolute -right-2 -top-2 p-1.5 bg-red-500 rounded-full shadow-lg transition-all duration-200 hover:scale-110 ${
-                          hoveredMessage === idx ? 'opacity-100' : 'opacity-0 md:group-hover:opacity-100'
-                        }`}
-                      >
-                        <Trash2 size={12} className="text-white" />
-                      </button>
-                      <p className="text-xs text-gray-500 mt-1 text-right">You • Just now</p>
+            chatLog.map((chat, idx) => (
+              <div 
+                key={idx} 
+                className="flex flex-col gap-3 animate-fade-in"
+                onMouseEnter={() => setHoveredMessage(idx)}
+                onMouseLeave={() => setHoveredMessage(null)}
+              >
+                {/* User Message */}
+                <div className="flex justify-end group">
+                  <div className="relative max-w-[85%]">
+                    <div className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-2xl rounded-tr-none px-5 py-3 shadow-xl">
+                      <p className="text-base leading-relaxed">{chat.p}</p>
                     </div>
-                  </div>
-                  
-                  {/* AI Message */}
-                  <div className="flex justify-start w-full">
-                    <div className="relative w-full max-w-[90%] md:max-w-[85%]">
-                      <div className="bg-gradient-to-br from-gray-800/80 to-purple-900/50 text-gray-200 rounded-2xl rounded-tl-none px-5 md:px-6 py-4 border border-purple-500/30 shadow-xl w-full">
-                        <div className="flex items-center gap-2 mb-3 pb-2 border-b border-purple-500/30">
-                          <div className="w-6 h-6 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
-                            <Bot className="w-3 h-3 text-white" />
-                          </div>
-                          <span className="text-xs font-semibold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                            AI ADIAT
-                          </span>
-                        </div>
-                        <div className="prose prose-invert max-w-none break-words">
-                          <ReactMarkdown
-                            components={{
-                              code({ node, inline, className, children, ...props }: any) {
-                                const match = /language-(\w+)/.exec(className || "");
-                                return !inline && match ? (
-                                  <CodeBlock language={match[1]} value={String(children).replace(/\n$/, "")} />
-                                ) : (
-                                  <code className="bg-gray-700/50 px-1.5 py-0.5 rounded text-cyan-300 font-mono text-sm break-words" {...props}>
-                                    {children}
-                                  </code>
-                                );
-                              },
-                              a({ href, children }: any) {
-                                return (
-                                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 underline transition-colors break-words">
-                                    {children}
-                                  </a>
-                                );
-                              },
-                              h1: ({ children }) => <h1 className="text-xl md:text-2xl font-bold mt-4 mb-2 text-white break-words">{children}</h1>,
-                              h2: ({ children }) => <h2 className="text-lg md:text-xl font-bold mt-3 mb-2 text-white break-words">{children}</h2>,
-                              h3: ({ children }) => <h3 className="text-base md:text-lg font-bold mt-2 mb-1 text-white break-words">{children}</h3>,
-                              p: ({ children }) => <p className="mb-2 leading-relaxed text-sm md:text-base break-words">{children}</p>,
-                              ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1 break-words">{children}</ul>,
-                              ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1 break-words">{children}</ol>,
-                              li: ({ children }) => <li className="text-sm break-words">{children}</li>,
-                              blockquote: ({ children }) => (
-                                <blockquote className="border-l-4 border-purple-500 pl-4 my-2 italic text-gray-400 break-words">
-                                  {children}
-                                </blockquote>
-                              ),
-                            }}
-                          >
-                            {chat.r}
-                          </ReactMarkdown>
-                        </div>
-                      </div>
-                      <button 
-                        onClick={() => deleteMessage(idx)}
-                        className={`absolute -left-2 -top-2 p-1.5 bg-red-500 rounded-full shadow-lg transition-all duration-200 hover:scale-110 ${
-                          hoveredMessage === idx ? 'opacity-100' : 'opacity-0 md:group-hover:opacity-100'
-                        }`}
-                      >
-                        <Trash2 size={12} className="text-white" />
-                      </button>
-                      <p className="text-xs text-gray-500 mt-1">AI • Just now</p>
-                    </div>
+                    <button 
+                      onClick={() => deleteMessage(idx)}
+                      className={`absolute -right-2 -top-2 p-1.5 bg-red-500 rounded-full shadow-lg transition-all duration-200 hover:scale-110 ${
+                        hoveredMessage === idx ? 'opacity-100' : 'opacity-0 md:group-hover:opacity-100'
+                      }`}
+                    >
+                      <Trash2 size={12} className="text-white" />
+                    </button>
+                    <p className="text-xs text-gray-500 mt-1 text-right">You • Just now</p>
                   </div>
                 </div>
-              ))}
-            </div>
+                
+                {/* AI Message */}
+                <div className="flex justify-start group">
+                  <div className="relative max-w-[90%] w-full">
+                    <div className="bg-gradient-to-br from-gray-800/80 to-purple-900/50 text-gray-200 rounded-2xl rounded-tl-none px-6 py-4 border border-purple-500/30 shadow-xl">
+                      <div className="flex items-center gap-2 mb-3 pb-2 border-b border-purple-500/30">
+                        <div className="w-6 h-6 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center">
+                          <Bot className="w-3 h-3 text-white" />
+                        </div>
+                        <span className="text-xs font-semibold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                          AI ADIAT
+                        </span>
+                      </div>
+                      <ReactMarkdown
+                        components={{
+                          code({ node, inline, className, children, ...props }: any) {
+                            const match = /language-(\w+)/.exec(className || "");
+                            return !inline && match ? (
+                              <CodeBlock language={match[1]} value={String(children).replace(/\n$/, "")} />
+                            ) : (
+                              <code className="bg-gray-700/50 px-1.5 py-0.5 rounded text-cyan-300 font-mono text-sm" {...props}>
+                                {children}
+                              </code>
+                            );
+                          },
+                          a({ href, children }: any) {
+                            return (
+                              <a href={href} target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-cyan-300 underline transition-colors">
+                                {children}
+                              </a>
+                            );
+                          },
+                          h1: ({ children }) => <h1 className="text-2xl font-bold mt-4 mb-2 text-white">{children}</h1>,
+                          h2: ({ children }) => <h2 className="text-xl font-bold mt-3 mb-2 text-white">{children}</h2>,
+                          h3: ({ children }) => <h3 className="text-lg font-bold mt-2 mb-1 text-white">{children}</h3>,
+                          p: ({ children }) => <p className="mb-2 leading-relaxed text-base">{children}</p>,
+                          ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1">{children}</ul>,
+                          ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1">{children}</ol>,
+                          li: ({ children }) => <li className="text-sm">{children}</li>,
+                          blockquote: ({ children }) => (
+                            <blockquote className="border-l-4 border-purple-500 pl-4 my-2 italic text-gray-400">
+                              {children}
+                            </blockquote>
+                          ),
+                        }}
+                      >
+                        {chat.r}
+                      </ReactMarkdown>
+                    </div>
+                    <button 
+                      onClick={() => deleteMessage(idx)}
+                      className={`absolute -left-2 -top-2 p-1.5 bg-red-500 rounded-full shadow-lg transition-all duration-200 hover:scale-110 ${
+                        hoveredMessage === idx ? 'opacity-100' : 'opacity-0 md:group-hover:opacity-100'
+                      }`}
+                    >
+                      <Trash2 size={12} className="text-white" />
+                    </button>
+                    <p className="text-xs text-gray-500 mt-1">AI • Just now</p>
+                  </div>
+                </div>
+              </div>
+            ))
           )}
 
           {/* Loading Indicator */}
@@ -495,12 +494,12 @@ export default function BlueChatApp() {
         </div>
 
         {/* Input Area */}
-        <div className="p-4 md:p-6 bg-gradient-to-t from-slate-900 to-transparent border-t border-white/10 w-full">
-          <div className="max-w-4xl mx-auto w-full">
+        <div className="p-4 md:p-6 bg-gradient-to-t from-slate-900 to-transparent border-t border-white/10">
+          <div className="max-w-4xl mx-auto">
             <div className="relative flex items-end gap-3 bg-gradient-to-r from-gray-800/40 to-purple-900/40 rounded-2xl border border-purple-500/30 focus-within:border-cyan-500/50 focus-within:ring-2 focus-within:ring-cyan-500/50 transition-all duration-300">
               <textarea
                 ref={inputRef}
-                className="flex-1 bg-transparent px-5 py-4 text-base text-white placeholder-gray-500 focus:outline-none resize-none rounded-2xl w-full"
+                className="flex-1 bg-transparent px-5 py-4 text-base text-white placeholder-gray-500 focus:outline-none resize-none rounded-2xl"
                 value={input}
                 onChange={(e) => {
                   setInput(e.target.value);
@@ -520,7 +519,7 @@ export default function BlueChatApp() {
               <button 
                 onClick={handleSend} 
                 disabled={loading || !input.trim()} 
-                className="group relative overflow-hidden m-2 h-12 w-12 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 hover:from-cyan-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold rounded-xl transition-all duration-300 shadow-xl disabled:opacity-50 flex-shrink-0"
+                className="group relative overflow-hidden m-2 h-12 w-12 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 hover:from-cyan-600 hover:via-purple-600 hover:to-pink-600 text-white font-bold rounded-xl transition-all duration-300 shadow-xl disabled:opacity-50"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                 {loading ? (
@@ -607,13 +606,6 @@ export default function BlueChatApp() {
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
-        }
-        .break-words {
-          word-break: break-word;
-          overflow-wrap: break-word;
-        }
-        .prose {
-          max-width: 100%;
         }
       `}</style>
     </div>
