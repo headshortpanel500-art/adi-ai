@@ -82,11 +82,11 @@ export default function LoginPage() {
             {/* Title Section */}
             <div className="text-center mb-8">
               <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-cyan-400 via-white to-blue-400 bg-clip-text text-transparent mb-4">
-                বাংলা AI বন্ধু
+                ADI AI FRIEND
               </h1>
               <div className="flex items-center justify-center gap-3">
                 <div className="w-12 h-px bg-gradient-to-r from-transparent to-cyan-500"></div>
-                <p className="text-gray-300 text-sm font-medium">তোমার ব্যক্তিগত AI সহচর</p>
+                <p className="text-gray-300 text-sm font-medium">YOUR PERSONAL AI</p>
                 <div className="w-12 h-px bg-gradient-to-l from-transparent to-cyan-500"></div>
               </div>
             </div>
@@ -97,7 +97,7 @@ export default function LoginPage() {
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"></div>
               <p className="text-gray-200 text-base leading-relaxed text-center relative z-10 flex items-center justify-center gap-2">
                 <span className="text-2xl animate-pulse">✨</span>
-                AI-তে শেখার নতুন অভিজ্ঞতা
+                
                 <span className="text-2xl animate-pulse delay-300">✨</span>
               </p>
               <div className="flex flex-wrap justify-center gap-2 mt-4 relative z-10">
@@ -238,7 +238,7 @@ export default function LoginPage() {
       {/* Premium Footer */}
       <div className="absolute bottom-5 left-0 right-0 text-center">
         <p className="text-gray-500 text-xs flex items-center justify-center gap-2">
-          <span>© ২০২৬ আদিয়াত সারকার</span>
+          <span>© 2026 ADIAT SARKER</span>
           <span className="text-cyan-400 animate-pulse">❤️</span>
           <span>Premium AI Experience</span>
         </p>
