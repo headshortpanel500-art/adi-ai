@@ -506,7 +506,7 @@ export default function BlueChatApp() {
                   e.target.style.height = 'auto';
                   e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
                 }}
-                placeholder="💭 Ask me anything... I'm here to help! ✨"
+                placeholder="💭 Ask me anything... I'm here to help! "
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault();
@@ -532,13 +532,7 @@ export default function BlueChatApp() {
             
             <div className="flex items-center justify-between mt-3 px-2">
               <div className="flex items-center gap-3 text-xs text-gray-500">
-                <span className="flex items-center gap-1">🔒 End-to-end encrypted</span>
-                <span className="w-1 h-1 bg-gray-600 rounded-full"></span>
-                <span className="flex items-center gap-1 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent font-semibold">⚡ AI-Powered • GPT-4</span>
               </div>
-              <p className="text-xs text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 font-semibold">
-                Designed with 💙 by Adiat Sarker
-              </p>
             </div>
           </div>
         </div>
