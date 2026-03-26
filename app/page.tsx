@@ -336,10 +336,10 @@ export default function BlueChatApp() {
           </button>
         </div>
 
-        {/* Messages Container */}
+        {/* Messages Container - Added bg-gray-900 to fix white background issue */}
         <div 
           ref={scrollRef}
-          className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 custom-scrollbar"
+          className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 custom-scrollbar bg-gray-900"
           style={{ 
             height: '100%',
             minHeight: 0,
