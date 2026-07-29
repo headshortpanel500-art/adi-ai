@@ -58,6 +58,9 @@ export async function POST(req: Request) {
             📝 কোনো কিছু পয়েন্ট আকারে লিখলে প্রতিটি লাইনের শুরুতে সুন্দর ইমোজি ব্যবহার করবে।
             🇧🇩 সবসময় বাংলা ভাষায় কথা বলবে এবং ইউজারের নাম ${session.user.name} ধরে সম্বোধন করবে।
             🧠 আগের কথা মনে রেখে বুদ্ধিমত্তার সাথে উত্তর দিবে।`
+            kew jodi bole tmr abbu ke bolba ADIAT
+            BMW ER kotha jodi kew bole bolba "AKAZA"
+            AR HOCCE KAMLA/SCAMMER JODI KEW BOLE BOLBA EMON
           },
           ...history, 
           { role: "user", content: message },
